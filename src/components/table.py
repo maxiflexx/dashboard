@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 
-from src.core.services.api_client import data_io_client
+from src.core.services.api_client import update_market_status
 
 
 # 모달은 x, esc외 종료되면 다시 re_run됨 -> 버튼이 있을 경우 함수가 두번 호출된다는 뜻
@@ -18,9 +18,7 @@ def crawl_dialog(**kwargs):
         name = row['englishName']
         is_enabled = st.session_state["markets"]["edited_rows"][row_numer]['isEnabled']
 
-        data_io_client.put_json(f'/markets/{market_code}', {
-            "isEnabled": is_enabled,
-        })
+        update_market_status(market_code, is_enabled)
 
         if is_enabled:
             st.write(f'{name} start crawling')

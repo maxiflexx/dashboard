@@ -1,15 +1,8 @@
 import pandas as pd
-
 import streamlit as st
+
 from src.components.table import write_table
-from src.core.services.api_client import data_io_client
-
-
-def load_data():
-    answer = data_io_client.get_json(
-        path='/markets',
-    )
-    return answer
+from src.core.services.api_client import get_markets
 
 
 def write():
@@ -36,7 +29,7 @@ def write():
             """
         )
 
-        data = load_data()
+        data = get_markets()
         df = pd.DataFrame(data)
 
         write_table(df)

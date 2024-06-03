@@ -141,7 +141,7 @@ def write_candlestick(df: pd.DataFrame):
 
 
     fig.update_layout(
-        # height=1200,
+        height=1000,
         # width=1500,
         showlegend=False,
         xaxis_rangeslider_visible=False,

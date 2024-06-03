@@ -75,3 +75,26 @@ class ApiClient:
 
 
 data_io_client = ApiClient(base_url=f"{settings.data_io_schema}://{settings.data_io_host}:{settings.data_io_port}")
+
+
+def get_markets():
+    return data_io_client.get_json(
+        path='/markets',
+    )
+
+
+def update_market_status(market_code: str, is_enabled: bool):
+    return data_io_client.put_json(f'/markets/{market_code}', {
+        "isEnabled": is_enabled,
+    })
+
+def get_coins(market_code: str, start_date: str, end_date: str, size: int):
+    return data_io_client.get_json(
+        path='/coins',
+        query={
+            "market": market_code,
+            "startDate": start_date,
+            "endDate": end_date,
+            "limit": size,
+        }
+    )

@@ -3,7 +3,6 @@ import streamlit as st
 import src.pages.analysis
 import src.pages.dataset
 import src.pages.home
-from src.core.services.api_client import data_io_client
 
 PAGES = {
     "Home": src.pages.home,
@@ -19,8 +18,6 @@ def sidebar():
 	selection = st.sidebar.radio("Go to", list(PAGES.keys()))
 
 	page = PAGES[selection]
-
-	data = data_io_client.get_json('/coins', { "market": "KRW-BTC", "startDate": "2024-04-20", "endDate": "2024-04-26" })
 
 	with st.spinner(f"Loading {selection} ..."):
 		page.write()
