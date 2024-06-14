@@ -4,7 +4,7 @@
 folderWatchBlacklist = []
 fileWatcherType = "auto"
 cookieSecret = "a-random-key-appears-here"
-headless = false
+headless = true
 runOnSave = true
 port = 3333
 

@@ -1,0 +1,14 @@
+# docker-compose.yml
+version: "3"
+services:
+  dashboard:
+    build:
+      dockerfile: ./Dockerfile
+      context: ./
+    ports:
+      - "3333:3333"
+    networks:
+      - streamlit-network
+networks:
+  streamlit-network:
+    driver: bridge
